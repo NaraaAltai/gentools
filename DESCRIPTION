@@ -1,0 +1,34 @@
+Package: gentools
+Title: Functions for Genomics Lab
+Version: 0.0.0.1
+Authors@R: 
+    c(person(given = "Naraa",
+           family = "Altai",
+           role = c("aut"),
+           email = "naltai@wesleyan.edu"),
+      person(given = "Sofia",
+           family = "Colorado",
+           role = c("aut", "cre"),
+           email = "acolorado@wesleyan.edu"))
+Description: Provides easier tools to work with genomics data (summarize, plot, and create table) and 
+    produce an editable lab report. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Imports:
+    ggplot2,
+    ggrepel, 
+    plotly, 
+    ggpubr,
+    huxtable,
+    dplyr
+Suggests:
+    knitr,
+    rmarkdown
+BugReports: https://github.com/acolorado1/gentools/issues
+Depends: 
+    R (>= 2.10)
+
