@@ -6,6 +6,7 @@
 \usage{
 genomic_plot(
   plot.type = c("scatter", "volcano", "violin"),
+  interact = TRUE,
   data,
   gene.n,
   c.val,
@@ -17,6 +18,9 @@ genomic_plot(
 }
 \arguments{
 \item{plot.type}{can be either "scatter", "volcano", or " violin".}
+
+\item{interact}{if TRUE, the function returns an interactive plotly graph for either
+scatter or volcano plot. if FALSE, the function returns a static plot.}
 
 \item{data}{data set of genomic data}
 
@@ -44,10 +48,10 @@ scatter plot requires the expression values from the controls, the experiments, 
 the column stating whether they are significant.
 }
 \examples{
- genomic_plot(plot.type = "scatter", data = gendata, gene.n = "gene" ,c.val = "value_1",
+ genomic_plot(plot.type = "scatter", interact = FALSE, data = gendata, gene.n = "gene" ,c.val = "value_1",
                     e.val = "value_2",sig = "significant")
- genomic_plot(plot.type = "volcano", data = gendata, gene.n = "gene",
+ genomic_plot(plot.type = "volcano", data = gendata, interact = FALSE, gene.n = "gene",
                     log2 = "log2.fold_change.", pval = "p_value")
- genomic_plot(plot.type = "violin", data = gendata, gene.n = "gene",
+ genomic_plot(plot.type = "violin", data = gendata, interact=FALSE, gene.n = "gene",
                     log2 = "log2.fold_change.", pval = "p_value")
 }

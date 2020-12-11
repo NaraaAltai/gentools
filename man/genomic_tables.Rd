@@ -10,7 +10,8 @@ genomic_tables(
   gene.n,
   log2,
   pval,
-  sig
+  sig,
+  num.rows = 10
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ genomic_tables(
 \item{pval}{column of data set with p-values}
 
 \item{sig}{column name in data set that states changes were significant}
+
+\item{num.rows}{number of rows to display in the table}
 }
 \value{
 returns a huxtable

@@ -1,6 +1,6 @@
 #' Genomic Summary
 #'
-#' This function provides some basic information on the data set. If first
+#' This function provides some basic information on the data set. It first
 #' provides a table of total number of significantly deferentially expressed
 #' genes. Then in runs a binomial exact test on those numbers. Lastly, it
 #' returns a basic histogram of log2 (fold change) values in order for the

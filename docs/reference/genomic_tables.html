@@ -63,7 +63,7 @@ for the number of rows you wish to view." />
   <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -85,6 +85,9 @@ for the number of rows you wish to view." />
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/gentools.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -127,7 +130,8 @@ for the number of rows you wish to view.</p>
   <span class='va'>gene.n</span>,
   <span class='va'>log2</span>,
   <span class='va'>pval</span>,
-  <span class='va'>sig</span>
+  <span class='va'>sig</span>,
+  num.rows <span class='op'>=</span> <span class='fl'>10</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -157,6 +161,10 @@ for the number of rows you wish to view.</p>
       <th>sig</th>
       <td><p>column name in data set that states changes were significant</p></td>
     </tr>
+    <tr>
+      <th>num.rows</th>
+      <td><p>number of rows to display in the table</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -166,13 +174,67 @@ for the number of rows you wish to view.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, U.D.diffexp <span class='op'>=</span> <span class='st'>"up"</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>,
        log2 <span class='op'>=</span> <span class='st'>"log2.fold_change."</span>, pval <span class='op'>=</span> <span class='st'>"p_value"</span>, sig <span class='op'>=</span> <span class='st'>"significant"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; How many rows of data would like displayed? </div><div class='output co'>#&gt; <span class='error'>Error in 1:num.rows: NA/NaN argument</span></div><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, U.D.diffexp <span class='op'>=</span> <span class='st'>"down"</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>,
+</div><div class='output co'>#&gt;                     <span style='font-weight: bold;'>gene </span><span>   </span><span style='font-weight: bold;'>log2.fold_change.</span><span>   </span><span style='font-weight: bold;'>    p_value</span><span>  
+#&gt;                   ───────────────────────────────────────────
+#&gt;                     4759                  Inf       0.001    
+#&gt;                     6760                 2.98   5e-05        
+#&gt;                     1697                 2.97   5e-05        
+#&gt;                     6518                 2.94   5e-05        
+#&gt;                     5030                 2.56       0.00065  
+#&gt;                     7271                 2.42   5e-05        
+#&gt;                     2776                 2.39   5e-05        
+#&gt;                     1629                  2.3   5e-05        
+#&gt;                     7441                 2.16   5e-05        
+#&gt;                     7272                 2.13   5e-05        
+#&gt; 
+#&gt; Column names: gene, log2.fold_change., p_value</div><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, U.D.diffexp <span class='op'>=</span> <span class='st'>"down"</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>,
        log2 <span class='op'>=</span> <span class='st'>"log2.fold_change."</span>, pval <span class='op'>=</span> <span class='st'>"p_value"</span>, sig <span class='op'>=</span> <span class='st'>"significant"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; How many rows of data would like displayed? </div><div class='output co'>#&gt; <span class='error'>Error in 1:num.rows: NA/NaN argument</span></div><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, U.D.diffexp <span class='op'>=</span> <span class='st'>"neither"</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>,
+</div><div class='output co'>#&gt;                     </span><span style='font-weight: bold;'>gene </span><span>   </span><span style='font-weight: bold;'>log2.fold_change.</span><span>   </span><span style='font-weight: bold;'>    p_value</span><span>  
+#&gt;                   ───────────────────────────────────────────
+#&gt;                     16938               -3.99   5e-05        
+#&gt;                     6121                 -3.9       0.0003   
+#&gt;                     5945                   -3       0.00215  
+#&gt;                     5656                -2.39   5e-05        
+#&gt;                     2864                -2.32       0.0004   
+#&gt;                     8020                -2.11   5e-05        
+#&gt;                     7619                 -1.8   5e-05        
+#&gt;                     5504                -1.75   5e-05        
+#&gt;                     5655                -1.75   5e-05        
+#&gt;                     8215                 -1.7       0.0017   
+#&gt; 
+#&gt; Column names: gene, log2.fold_change., p_value</div><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, U.D.diffexp <span class='op'>=</span> <span class='st'>"neither"</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>,
        log2 <span class='op'>=</span> <span class='st'>"log2.fold_change."</span>, pval <span class='op'>=</span> <span class='st'>"p_value"</span>, sig <span class='op'>=</span> <span class='st'>"significant"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; How many rows of data would like displayed? </div><div class='output co'>#&gt; <span class='error'>Error in 1:num.rows: NA/NaN argument</span></div><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>, log2 <span class='op'>=</span> <span class='st'>"log2.fold_change."</span>,
+</div><div class='output co'>#&gt;              </span><span style='font-weight: bold;'>gene </span><span>   </span><span style='font-weight: bold;'>log2.fold_change</span><span>   </span><span style='font-weight: bold;'>    p_value</span><span>   </span><span style='font-weight: bold;'>diffexpressed</span><span>  
+#&gt;                      </span><span style='font-weight: bold;'>               .</span><span>                                
+#&gt;            ──────────────────────────────────────────────────────────
+#&gt;              16938              -3.99   5e-05         down           
+#&gt;              185                0.706       0.0001    up             
+#&gt;              16645              0.556       0.0012    up             
+#&gt;              207               -0.698       0.00055   down           
+#&gt;              296                 1.39   5e-05         up             
+#&gt;              452                0.871       0.001     up             
+#&gt;              485               -0.863       0.0006    down           
+#&gt;              597                -1.26   5e-05         down           
+#&gt;              599                -1.23       0.0004    down           
+#&gt;              635                0.591       0.00105   up             
+#&gt; 
+#&gt; Column names: gene, log2.fold_change., p_value, diffexpressed</div><div class='input'><span class='fu'>genomic_tables</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gendata</span>, gene.n <span class='op'>=</span> <span class='st'>"gene"</span>, log2 <span class='op'>=</span> <span class='st'>"log2.fold_change."</span>,
         pval <span class='op'>=</span> <span class='st'>"p_value"</span>, sig <span class='op'>=</span> <span class='st'>"significant"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; How many rows of data would like displayed? </div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='error'>Error in 1:num.rows: NA/NaN argument</span></div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt;              </span><span style='font-weight: bold;'>gene </span><span>   </span><span style='font-weight: bold;'>log2.fold_change</span><span>   </span><span style='font-weight: bold;'>    p_value</span><span>   </span><span style='font-weight: bold;'>diffexpressed</span><span>  
+#&gt;                      </span><span style='font-weight: bold;'>               .</span><span>                                
+#&gt;            ──────────────────────────────────────────────────────────
+#&gt;              16938              -3.99   5e-05         down           
+#&gt;              185                0.706       0.0001    up             
+#&gt;              16645              0.556       0.0012    up             
+#&gt;              207               -0.698       0.00055   down           
+#&gt;              296                 1.39   5e-05         up             
+#&gt;              452                0.871       0.001     up             
+#&gt;              485               -0.863       0.0006    down           
+#&gt;              597                -1.26   5e-05         down           
+#&gt;              599                -1.23       0.0004    down           
+#&gt;              635                0.591       0.00105   up             
+#&gt; 
+#&gt; Column names: gene, log2.fold_change., p_value, diffexpressed</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -10,6 +10,7 @@
 #' @param log2 column of data set with log2 values
 #' @param pval column of data set with p-values
 #' @param sig column name in data set that states changes were significant
+#' @param num.rows number of rows to display in the table
 #'
 #' @import dplyr huxtable
 #' @export
@@ -24,7 +25,7 @@
 #'        log2 = "log2.fold_change.", pval = "p_value", sig = "significant")
 #' genomic_tables(data = gendata, gene.n = "gene", log2 = "log2.fold_change.",
 #'         pval = "p_value", sig = "significant")
-genomic_tables <- function(data, U.D.diffexp = c("neither","up","down"), gene.n, log2, pval, sig){
+genomic_tables <- function(data, U.D.diffexp = c("neither","up","down"), gene.n, log2, pval, sig, num.rows=10){
 
   sub.test <- subset.data.frame(data, data[[sig]] != "no")
 
@@ -32,8 +33,8 @@ genomic_tables <- function(data, U.D.diffexp = c("neither","up","down"), gene.n,
   sub.test$diffexpressed[sub.test[[log2]] < 0] <- "down"
 
 
-  num.rows <- readline(prompt = "How many rows of data would like displayed? ")
-  as.numeric(num.rows)
+  #num.rows <- readline(prompt = "How many rows of data would like displayed? ")
+  #as.numeric(num.rows)
 
   columns <- c(gene.n, log2,pval)
 

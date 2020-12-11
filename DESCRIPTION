@@ -24,7 +24,11 @@ Imports:
     plotly, 
     ggpubr,
     huxtable,
-    dplyr
+    dplyr, 
+    haven,
+    readxl,
+    vroom,
+    tools
 Suggests:
     knitr,
     rmarkdown

@@ -1,0 +1,90 @@
+---
+title: "Exploring gentools package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gentools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The purpose of gentools package is to make the process of working with genomics data and writing report smoother and easier. The main functionalities of the package are summarizing genomics data, generating tables, 3 different type of plots that are most prevalently used in genomics lab (volcano, scatter, violin) and generating an editable lab report with subsections and placeholder texts as well as plots.  
+
+
+
+```{r, include = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+```{r setup, warning = FALSE}
+library(gentools)
+```
+
+## Example dataset: gendata
+
+The package comes with a dataset 'gendata'. User can also import their own dataset using import_data() function as follows:
+
+```{r, warning = FALSE}
+
+# loading gendata
+data(gendata)
+
+# importing a new dataset
+#import_data("filepath")
+  ## if the user does not specify "filepath", a file browser will show up to allow them to choose their file
+
+```
+
+## Summarizing data
+
+We can take look at the data and understand some basic information about it by calling the function genomic_summary() function. It first provides a table of total number of significantly deferentially expressed genes. Then in runs a binomial exact test on those numbers. Lastly, it returns a basic histogram of log2 (fold change) values in order for the user to gain an understanding of the skew.
+
+```{r, warning = FALSE}
+
+# this provides basic summary of the data as well as a histogram
+# of log2(fold_change) gene expression
+
+genomic_summary(data = gendata, log2 = "log2.fold_change.", sig = "significant")
+
+```
+
+## Creating a table
+
+We can generate a table of gene names, log2 values, p-values. One can filter for genes that were up or down regulated, or the default is neither. The function will default to displaying first 10 rows.
+
+```{r, warning = FALSE}
+
+# a simple table of genes that were down regulated. By default, the table shows the first 10 rows of data
+
+genomic_tables(data = gendata, U.D.diffexp = "up", gene.n = "gene",
+       log2 = "log2.fold_change.", pval = "p_value", sig = "significant")
+
+```
+
+## generating a plot
+
+A great to look at out genomics data is to look at the data as a whole and look for any patterns or observations to note. The plot function takes expression levels of genes found in genomic data sets, and plots them as either a scatter plot, a volcano plot, or a violin plot. While both volcano and violin plots require only the gene names, log2 values, and p values, the scatter plot requires the expression values from the controls, the experiments, and the column stating whether they are significant.
+
+The following shows how to plot a volcano plot from a genomics dataset. User can also set interact to TRUE to enable the feature to look at specific data on the displayed plot.
+
+```{r, warning = FALSE}
+genomic_plot(plot.type = "volcano", data = gendata, interact = FALSE, gene.n = "gene",
+                    log2 = "log2.fold_change.", pval = "p_value")
+
+```
+
+## Generating a report
+
+User can generate an editable lab report that includes plots and tables as well as placeholder texts. The output word document file serves as a template for a report, and also automatically inserts the plots and tables generated so to smoothen the process of exporting files from R.
+
+```{r, warning = FALSE}
+
+# genomic_report(gendata, "My Lab Report", "Full Name")
+
+```
+
+
+

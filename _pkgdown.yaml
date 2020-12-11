@@ -1,0 +1,9 @@
+title: gentools
+url: http://naraaaltai.github.io/gentools/
+template:
+  params:
+  bootswatch: simplex
+navbar:
+  type: inverse
+
+

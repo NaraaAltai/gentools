@@ -8,6 +8,8 @@
 #'
 #' @param plot.type can be either "scatter", "volcano", or " violin".
 #' @param data data set of genomic data
+#' @param interact if TRUE, the function returns an interactive plotly graph for either
+#' scatter or volcano plot. if FALSE, the function returns a static plot.
 #' @param gene.n column name in data set with gene names (character).
 #' @param c.val column name in data set with expression levels in control (numeric).
 #' @param e.val column name in data set with expression levels in experiment (numeric).
@@ -22,13 +24,13 @@
 #' or vio (violin plot).
 #'
 #' @examples
-#'  genomic_plot(plot.type = "scatter", data = gendata, gene.n = "gene" ,c.val = "value_1",
+#'  genomic_plot(plot.type = "scatter", interact = FALSE, data = gendata, gene.n = "gene" ,c.val = "value_1",
 #'                     e.val = "value_2",sig = "significant")
-#'  genomic_plot(plot.type = "volcano", data = gendata, gene.n = "gene",
+#'  genomic_plot(plot.type = "volcano", data = gendata, interact = FALSE, gene.n = "gene",
 #'                     log2 = "log2.fold_change.", pval = "p_value")
-#'  genomic_plot(plot.type = "violin", data = gendata, gene.n = "gene",
+#'  genomic_plot(plot.type = "violin", data = gendata, interact=FALSE, gene.n = "gene",
 #'                     log2 = "log2.fold_change.", pval = "p_value")
-genomic_plot <- function(plot.type = c("scatter","volcano","violin"), data, gene.n, c.val,
+genomic_plot <- function(plot.type = c("scatter","volcano","violin"), interact = TRUE, data, gene.n, c.val,
                          e.val, log2, pval, sig){
 
   if(plot.type != "scatter"){
@@ -54,8 +56,11 @@ genomic_plot <- function(plot.type = c("scatter","volcano","violin"), data, gene
       xlab(x.axis)+
       ylab(y.axis)+
       ggtitle(paste0("r = ", corr))
-
-    return(ggplotly(s))
+    if(interact == TRUE){
+      return(ggplotly(s))
+    }else{
+      return(s)
+    }
   }
   if(plot.type == "volcano"){
     x.axis <- "-log10(p value)"
@@ -69,8 +74,11 @@ genomic_plot <- function(plot.type = c("scatter","volcano","violin"), data, gene
       geom_hline(yintercept=-log10(0.05), col="red") +
       xlim(-15,15)
 
-    #return(vol)
-    return(ggplotly(vol, tooltip = "label"))
+    if(interact==TRUE){
+      return(ggplotly(vol, tooltip = "label"))
+    }else{
+      return(vol)
+    }
 
   }
   if(plot.type == "violin"){

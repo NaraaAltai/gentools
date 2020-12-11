@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//index.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//reference/gendata.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//reference/genomic_plot.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//reference/genomic_report.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//reference/genomic_summary.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//reference/genomic_tables.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//reference/import_data.html</loc>
+  </url>
+  <url>
+    <loc>http://naraaaltai.github.io/gentools//articles/gentools.html</loc>
+  </url>
+</urlset>
